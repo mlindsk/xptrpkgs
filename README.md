@@ -2,7 +2,11 @@ Testing External Pointers
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-This package comes with two functions, `make` and `release`, which are C++ functions. `make(i, j)` returns an *external pointer* to a `arma::Mat<short>` object with `i` rows and `j` columns and `release` frees the memory of an external pointer. For example:
+This package serves as an extension to the question asked here:
+
+<https://stackoverflow.com/questions/64389299/assigning-rcppxptr-on-the-r-side?noredirect=1#comment113930746_64389299>
+
+The package comes with two functions, `make` and `release`, which are C++ functions. `make(i, j)` returns an *external pointer* to a `arma::Mat<short>` object with `i` rows and `j` columns and `release` frees the memory of an external pointer. For example:
 
 ``` r
 x <- make(1e3, 1e6)
@@ -31,9 +35,9 @@ format(object.size(x), units = "b", standard = "auto", digits = 1L)
 # cleaning
 rm(x)
 gc()
-#>          used (Mb) gc trigger   (Mb)  max used   (Mb)
-#> Ncells 497239 26.6    1091660   58.4    714316   38.2
-#> Vcells 926924  7.1  386051350 2945.4 500957634 3822.1
+#>          used (Mb) gc trigger (Mb) max used (Mb)
+#> Ncells 494290 26.4    1091657 58.4   641200 34.3
+#> Vcells 920185  7.1    8388608 64.0  1752832 13.4
 ```
 
 Thus, creating external pointers does not set aside enough memory if we hope these to be garbage collected at some point.
@@ -49,8 +53,8 @@ format(object.size(y), units = "Gb", standard = "auto", digits = 1L)
 rm(y)
 gc()
 #>          used (Mb) gc trigger   (Mb)  max used   (Mb)
-#> Ncells 497220 26.6    1091660   58.4    714316   38.2
-#> Vcells 926717  7.1  482564212 3681.7 500957661 3822.1
+#> Ncells 494320 26.4    1091657   58.4    641200   34.3
+#> Vcells 920039  7.1  482557802 3681.7 500950983 3822.0
 ```
 
 Of course this is also a result of representing the matrix with `short` integers on C++; but that is the exact benefit we hope to exploit.
