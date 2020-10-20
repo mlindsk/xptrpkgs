@@ -62,4 +62,4 @@ gc()
 
 Of course this is also a result of representing the matrix with `short` integers on C++; but that is the exact benefit we hope to exploit.
 
-Is there, by any means, a way to achive the above? That is, can we design us out of the problem. If so, I have no idea where to start and I welcome any advise.
+Is there, by any means, a way to achive the above? That is, can we trick `R` into calling `gc()` and treat external pointers similar to ordinary `R` objects? That is, can we design us out of the problem. If so, I have no idea where to start and I welcome any advise.

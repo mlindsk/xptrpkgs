@@ -33,7 +33,7 @@ rm(x)
 gc()
 #>          used (Mb) gc trigger   (Mb)  max used   (Mb)
 #> Ncells 497239 26.6    1091660   58.4    714316   38.2
-#> Vcells 926897  7.1  386046148 2945.3 500950860 3822.0
+#> Vcells 926924  7.1  386051350 2945.4 500957634 3822.1
 ```
 
 Thus, creating external pointers does not set aside enough memory if we hope these to be garbage collected at some point.
@@ -50,9 +50,9 @@ rm(y)
 gc()
 #>          used (Mb) gc trigger   (Mb)  max used   (Mb)
 #> Ncells 497220 26.6    1091660   58.4    714316   38.2
-#> Vcells 926690  7.1  482564187 3681.7 500957634 3822.1
+#> Vcells 926717  7.1  482564212 3681.7 500957661 3822.1
 ```
 
 Of course this is also a result of representing the matrix with `short` integers on C++; but that is the exact benefit we hope to exploit.
 
-Is there, by any means, a way to achive the above? That is, can we design us out of the problem. If so, I have no idea where to start and I welcome any advise.
+Is there, by any means, a way to achive the above? That is, can we trick `R` into calling `gc()` and treat external pointers similar to ordinary `R` objects? That is, can we design us out of the problem. If so, I have no idea where to start and I welcome any advise.
