@@ -5,10 +5,10 @@ Testing External Pointers
 This package comes with two functions, `make` and `release`, which are C++ functions. `make(i, j)` returns an *external pointer* to a `arma::Mat<short>` object with `i` rows and `j` columns and `release` frees the memory of an external pointer. For example:
 
 ``` r
-x <- make(1e3, 1e6) # 1.9Gb
+x <- make(1e3, 1e6)
 ```
 
-which takes up approximately 1.9Gb on my machine (using `free -m` on linx). We can then remove `x` by
+which takes up approximately 1.9Gb on my machine (using `free -m` on linux). We can then free the memory of `x` by
 
 ``` r
 release(x)
@@ -31,9 +31,9 @@ format(object.size(x), units = "b", standard = "auto", digits = 1L)
 # cleaning
 rm(x)
 gc()
-#>          used (Mb) gc trigger (Mb) max used (Mb)
-#> Ncells 494291 26.4    1091660 58.4   641200 34.3
-#> Vcells 920062  7.1    8388608 64.0  1752832 13.4
+#>          used (Mb) gc trigger   (Mb)  max used   (Mb)
+#> Ncells 497239 26.6    1091660   58.4    714316   38.2
+#> Vcells 926897  7.1  386046148 2945.3 500950860 3822.0
 ```
 
 Thus, creating external pointers does not set aside enough memory if we hope these to be garbage collected at some point.
@@ -49,8 +49,10 @@ format(object.size(y), units = "Gb", standard = "auto", digits = 1L)
 rm(y)
 gc()
 #>          used (Mb) gc trigger   (Mb)  max used   (Mb)
-#> Ncells 494321 26.4    1091660   58.4    641200   34.3
-#> Vcells 919916  7.1  482557684 3681.7 500950860 3822.0
+#> Ncells 497220 26.6    1091660   58.4    714316   38.2
+#> Vcells 926690  7.1  482564187 3681.7 500957634 3822.1
 ```
 
 Of course this is also a result of representing the matrix with `short` integers on C++; but that is the exact benefit we hope to exploit.
+
+Is there, by any means, a way to achive the above? That is, can we design us out of the problem. If so, I have no idea where to start and I welcome any advise.
