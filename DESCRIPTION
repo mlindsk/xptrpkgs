@@ -1,0 +1,11 @@
+Package: xptrpkgs
+Type: Package
+Title: Testing External Pointers
+Version: 0.0.1
+Date: 2020-10-20
+Author: Mads Lindskou
+Maintainer: Mads Lindskou <not-relevant@email.com>
+Description: Testing external pointers.
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.5)
+LinkingTo: Rcpp, RcppArmadillo
